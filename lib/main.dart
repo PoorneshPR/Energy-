@@ -1,0 +1,206 @@
+
+import 'dart:ui';
+import 'package:flutter/cupertino.dart';
+import'package:flutter/material.dart';
+import'package:flutter/widgets.dart';
+import 'package:gradient_app_bar/gradient_app_bar.dart';
+import 'package:url_launcher/url_launcher.dart';
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'energy',
+      home: home(),
+    );
+  }
+}
+
+
+class menu extends StatefulWidget {
+  @override
+  _menuState createState() => _menuState();
+}
+
+class _menuState extends State<menu> {
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: Container(
+        color: Colors.black38,
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              child: Text(
+                'Advanced Menu',
+                style: TextStyle(color: Colors.white, fontSize: 25),
+              ),
+              decoration: BoxDecoration(
+                  color: Colors.blueGrey,
+                 ),
+            ),
+            ListTile(
+              leading: Icon(Icons.person_outline),
+              title: Text('User'),
+              onTap: () => {},
+            ),
+            ListTile(
+              leading: Icon(Icons.verified_user),
+              title: Text('profile'),
+              onTap: () => {Navigator.of(context).pop()},
+            ),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Settings'),
+              onTap: () => {Navigator.of(context).pop()},
+            ),
+            ListTile(
+              leading: Icon(Icons.border_color),
+              title: Text('Feedback'),
+              onTap: () => {Navigator.of(context).pop()},
+            ),
+            ListTile(
+              leading: Icon(Icons.exit_to_app),
+              title: Text('Logout'),
+              onTap: () => {Navigator.of(context).pop()},
+            ),
+          ],
+        ),
+      ),
+    )
+    ;
+  }
+}
+
+class home extends StatefulWidget {
+  @override
+  _homeState createState() => _homeState();
+}
+
+class _homeState extends State<home> {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+
+        drawer: menu(),
+        appBar: GradientAppBar(
+          backgroundColorStart: Colors.cyan,
+          backgroundColorEnd: Colors.lightGreenAccent,
+          centerTitle: true,
+          title: Text('Energy Meter'text),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(
+                Icons.notifications,
+                color: Colors.black,
+              ),
+              onPressed: () {
+                // do something
+              },
+            )
+          ],
+        ),
+
+        body: Container(
+
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topRight,
+                  end: Alignment.bottomLeft,
+                  colors: [Colors.lightGreenAccent,Colors.white,Colors.greenAccent,Colors.lightGreenAccent,Colors.white,Colors.cyan,Colors.cyanAccent,Colors.white, Colors.cyan])),
+
+          child: Column(
+
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.all(10),
+                  padding: EdgeInsets.all(100),
+                  height: 170,
+                  width: 1000,
+                  alignment: Alignment.topCenter,
+                  decoration: new BoxDecoration(
+                      color: Colors.pinkAccent,
+                      border: Border.all(
+                          color: Colors.black, // set border color
+                          width: 17.0), // set border width
+                      borderRadius: BorderRadius.all(
+                          Radius.circular(60.0)), // set rounded corner radius
+                      boxShadow: [
+                        BoxShadow(blurRadius: 10,
+                            color: Colors.black,
+                            offset: Offset(3, 5))
+                      ]
+                  ), // make rounded corner of border
+
+                ),
+                Container(
+                  margin: EdgeInsets.all(30),
+                  padding: EdgeInsets.all(1000),
+
+                  height: 180,
+                  width: 900,
+                  alignment: Alignment.topLeft,
+                  decoration: new BoxDecoration(
+                      color: Colors.cyan,
+
+                      border: Border.all(
+                          color: Colors.black, // set border color
+                          width: 8.0), // set border width
+                      borderRadius: BorderRadius.all(
+                          Radius.circular(60.0)), // set rounded corner radius
+                      boxShadow: [
+                        BoxShadow(blurRadius: 10,
+                            color: Colors.black,
+                            offset: Offset(2, 8))
+                      ]
+                  ),
+                ),
+    Container(
+      margin: EdgeInsets.all(10),
+      padding: EdgeInsets.all(10),
+    height: 83,
+    width: 238,
+      alignment: Alignment.bottomRight,
+
+      child: Column(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: <Widget>[
+    Card(
+    color: Colors.white,
+    shape: RoundedRectangleBorder(
+    side: BorderSide(color: Colors.black, width: 2.0),
+    borderRadius: BorderRadius.circular(20.0),
+    ),
+    child: Column(
+    crossAxisAlignment: CrossAxisAlignment.stretch,
+    children: <Widget>[
+    Padding(
+    padding: const EdgeInsets.all(3.0),
+    child: FlatButton.icon(
+    icon: Icon(Icons.add_to_home_screen),
+    label: Text(
+    "Online Payment",
+    style: TextStyle(fontSize: 20),
+    ),
+    onPressed: () => launch("https://wss.kseb.in/selfservices/quickpay"),
+    )
+    ),
+              ]
+          ),
+        ),
+    ],
+      ),
+    ),
+    ],
+    ),
+    ),
+    ),
+    );
+  }
+  }
+
